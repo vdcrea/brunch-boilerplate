@@ -10,7 +10,8 @@ let ModuleSlick = () => {
       let carousel = $(module_slick).find('.carousel')
       let $carousel = $(carousel[0])
       $carousel.slick({
-        autoplay: true
+        autoplay: true,
+        autoplaySpeed: 2000
       })
     })
   }
