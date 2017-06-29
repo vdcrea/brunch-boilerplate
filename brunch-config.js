@@ -3,6 +3,14 @@ module.exports = {
     watched: ['src'],
     public: 'www/assets'
   },
+  npm: {
+      styles: {
+          'slick-carousel': [
+            'slick/slick.css',
+            'slick/slick-theme.css'
+          ]
+      }
+  },
   files: {
     javascripts: {
       joinTo: {
@@ -12,6 +20,7 @@ module.exports = {
     },
     stylesheets: {
       joinTo: {
+        'css/vendor.css': /^node_modules/,
         'css/main.css': /^(src\/styles\/)/
       }
     }
