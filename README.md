@@ -4,7 +4,7 @@ This is a modern JS skeleton for [Brunch](http://brunch.io).
 
 ## Installation
 
-Clone this repo and `cd` to `front` dir.
+Clone this repo.
 
 ## Getting started
 
