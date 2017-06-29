@@ -11,7 +11,8 @@ let ModuleSlick = () => {
       let $carousel = $(carousel[0])
       $carousel.slick({
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
+        arrows: false
       })
     })
   }
