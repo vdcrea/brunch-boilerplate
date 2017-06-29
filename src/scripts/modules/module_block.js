@@ -3,6 +3,7 @@ import $ from 'jquery'
 let ModuleBlock = () => {
   let modules_block = $('.module_block')
   if (modules_block.length) {
+
     console.log('".module_block" detected (' + modules_block.length + ')')
 
     $.each(modules_block, function (i, module_block) {
