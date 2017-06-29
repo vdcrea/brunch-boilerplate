@@ -1,7 +1,7 @@
 module.exports = {
   paths: {
     watched: ['src'],
-    public: 'www/assets'
+    public: 'www/src'
   },
   npm: {
       styles: {
