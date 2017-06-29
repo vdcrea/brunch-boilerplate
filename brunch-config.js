@@ -1,17 +1,18 @@
 module.exports = {
   paths: {
-    public: '../www/assets'
+    watched: ['src'],
+    public: 'www/assets'
   },
   files: {
     javascripts: {
       joinTo: {
-        'js/vendor.js': /^(?!app\/)/,
-        'js/app.js': /^(app\/scripts\/)/
+        'js/vendor.js': /^(?!src\/)/,
+        'js/app.js': /^(src\/scripts\/)/
       }
     },
     stylesheets: {
       joinTo: {
-        'css/app.css': /^(app\/styles\/)/
+        'css/app.css': /^(src\/styles\/)/
       }
     }
   },
@@ -19,8 +20,8 @@ module.exports = {
     static: {
       processors: [
         require('html-brunch-static')({
-          partials: '/markup/partials?/',
-          layouts: '/markup/layouts?/',
+          partials: '/src/markup/partials?/',
+          layouts: '/src/markup/layouts?/',
           handlebars: {
             enableProcessor: true
           },
