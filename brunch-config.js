@@ -7,12 +7,12 @@ module.exports = {
     javascripts: {
       joinTo: {
         'js/vendor.js': /^(?!src\/)/,
-        'js/app.js': /^(src\/scripts\/)/
+        'js/main.js': /^(src\/scripts\/)/
       }
     },
     stylesheets: {
       joinTo: {
-        'css/app.css': /^(src\/styles\/)/
+        'css/main.css': /^(src\/styles\/)/
       }
     }
   },
