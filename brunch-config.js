@@ -4,12 +4,12 @@ module.exports = {
     public: 'www/src'
   },
   npm: {
-      styles: {
-          'slick-carousel': [
-            'slick/slick.css',
-            'slick/slick-theme.css'
-          ]
-      }
+    styles: {
+      'slick-carousel': [
+        'slick/slick.css',
+        'slick/slick-theme.css'
+      ]
+    }
   },
   files: {
     javascripts: {
@@ -41,6 +41,12 @@ module.exports = {
           ]
         })
       ]
+    },
+    svgo: {
+      plugins: [{
+        'removeTitle': true,
+        'removeComments': true
+      }]
     },
     cleancss: {
       keepSpecialComments: 0,

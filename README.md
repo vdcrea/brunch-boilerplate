@@ -12,6 +12,7 @@ Download this repo.
     * [Node.js](http://nodejs.org): `brew install node` on OS X
     * [Brunch](http://brunch.io): `npm install -g brunch`
     * Brunch plugins and app dependencies: `npm install`
+    * In `node_modules`, update `svgo-brunch/index.js` with [this commit](https://github.com/thomas-gordon/svgo-brunch/pull/1/files)
 * Run:
     * `npm start` — watches the project with continuous rebuild. This will also launch HTTP server with [pushState](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history).
     * `npm run build` — builds minified project for production
