@@ -28,7 +28,7 @@
     "pug-brunch-static": "^2.0.1",
     "sass-brunch": "^2.10.4",
     "stylus-brunch": "^2.10.0",
-    "svgo-brunch": "^1.0.6",
+    "svgo-brunch": "git+https://git@github.com/jdeniau/svgo-brunch.git",
     "uglify-js-brunch": "^2.10.0"
   },
   "eslintConfig": {
