@@ -2,14 +2,21 @@ title(c)
     display block
     position absolute
     top 50%
-    line-height 40px
-    margin-top -20px
+    line-height size(40px)
+    margin-top size(-20px)
     left 50%
-    width 260px
-    margin-left -130px
+    width size(260px)
+    margin-left size(-130px)
     color c
     z-index 2
     text-transform uppercase
     letter-spacing .5rem
     border 1px dotted c
     font-size 1.6rem
+
+size(value)
+    u = unit(value)
+    if (u is 'px')
+        return unit(value/10, 'rem')
+    else
+        return unit(value, u)
