@@ -57,7 +57,7 @@ module.exports = {
     },
     postcss: {
       processors: [
-        require('autoprefixer')(['last 20 versions']),
+        require('autoprefixer')(['last 5 versions']),
         require('csswring')
       ]
     }
