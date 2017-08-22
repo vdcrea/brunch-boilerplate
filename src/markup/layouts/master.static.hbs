@@ -7,21 +7,23 @@ _options:
     - src/markup/partials/master/ui_footer.static.pug
 ---
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="fr">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>{{title}}</title>
     {{>master_favicons}}
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link href="css/vendor.css" rel="stylesheet" type="text/css" media="all">
-    <link href="css/main.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="{{bodyclass}}">
+
     {{>ui_header}}
     {{>ui_nav}}
     {{content}}
     {{>ui_footer}}
+
     <script src="js/vendor.js"></script>
     <script src="js/main.js"></script>
     <script>require('src/scripts/main').init();</script>
