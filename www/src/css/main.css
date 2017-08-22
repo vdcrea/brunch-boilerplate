@@ -55,11 +55,11 @@ p {
   display: block;
   position: absolute;
   top: 50%;
-  line-height: 2.5rem;
-  margin-top: -1.25rem;
+  line-height: 4rem;
+  margin-top: -2rem;
   left: 50%;
-  width: 16.25rem;
-  margin-left: -8.125rem;
+  width: 26rem;
+  margin-left: -13rem;
   color: #224482;
   z-index: 2;
   text-transform: uppercase;
@@ -97,11 +97,11 @@ p {
   display: block;
   position: absolute;
   top: 50%;
-  line-height: 2.5rem;
-  margin-top: -1.25rem;
+  line-height: 4rem;
+  margin-top: -2rem;
   left: 50%;
-  width: 16.25rem;
-  margin-left: -8.125rem;
+  width: 26rem;
+  margin-left: -13rem;
   color: #fff;
   z-index: 2;
   text-transform: uppercase;
@@ -118,11 +118,11 @@ p {
   display: block;
   position: absolute;
   top: 50%;
-  line-height: 2.5rem;
-  margin-top: -1.25rem;
+  line-height: 4rem;
+  margin-top: -2rem;
   left: 50%;
-  width: 16.25rem;
-  margin-left: -8.125rem;
+  width: 26rem;
+  margin-left: -13rem;
   color: #fff;
   z-index: 2;
   text-transform: uppercase;
@@ -140,11 +140,11 @@ p {
   position: relative;
   background: #224482;
   color: #fff;
-  padding: 3.75rem 1.875rem;
+  padding: 6rem 3rem;
 }
 .module_text .title {
-  font-size: 1.875rem;
-  margin-bottom: 1.875rem;
+  font-size: 3rem;
+  margin-bottom: 3rem;
 }
 .module_text em {
   font-style: italic;

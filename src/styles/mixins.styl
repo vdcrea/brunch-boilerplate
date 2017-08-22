@@ -2,11 +2,11 @@ title( color )
     display block
     position absolute
     top 50%
-    line-height rem(40)
-    margin-top rem(-20)
+    line-height rem(40px)
+    margin-top rem(-20px)
     left 50%
-    width rem(260)
-    margin-left rem(-130)
+    width rem(260px)
+    margin-left rem(-130px)
     color color
     z-index 2
     text-transform uppercase
@@ -49,17 +49,24 @@ font-face( name, font-src, weight = false, style = false, formats = local eot wo
  * Convert pixels to rem. Assumes 1rem = 16px
  * http://kouto-swiss.io/docs.html#rem
  */
-rem( values )
-	base = $font-size-base is a "unit" ? $font-size-base : 16
-	result = null
+// rem( values )
+// 	base = $font-size-base is a "unit" ? $font-size-base : 16
+// 	result = null
+//
+// 	for value in values
+// 		if type( value ) == "unit" && ( unit( value ) == "px" || unit( value ) == "" )
+// 			value = unit( round(value / base, 3 ), "rem" )
+// 			if value == "0rem" { value = 0 }
+//
+// 		result = result != null ? result value : value
+// 	result
 
-	for value in values
-		if type( value ) == "unit" && ( unit( value ) == "px" || unit( value ) == "" )
-			value = unit( round(value / base, 3 ), "rem" )
-			if value == "0rem" { value = 0 }
-
-		result = result != null ? result value : value
-	result
+rem(value)
+	u = unit(value)
+	if (u is 'px')
+		return unit(value/10, 'rem')
+	else
+		return unit(value, u)
 
 /**
  * Shortcut for width and height properties
