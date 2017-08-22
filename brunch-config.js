@@ -8,7 +8,8 @@ module.exports = {
       'slick-carousel': [
         'slick/slick.css',
         'slick/slick-theme.css'
-      ]
+      ],
+      'normalize.css': ['normalize.css']
     }
   },
   files: {
