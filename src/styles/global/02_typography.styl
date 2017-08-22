@@ -1,15 +1,10 @@
+@import "../mixins"
 @import "../variables"
 
 
 // FONTS
 
-@font-face
-    font-family 'questa_grande'
-    src url('fonts/questa_grande.woff2') format('woff2'),
-        url('fonts/questa_grande.woff') format('woff')
-    font-weight normal
-    font-style normal
-
+font-face( 'Questa Grande', 'fonts', 400, normal, formats: local woff2 woff, local-font-name: 'Questa Grande' )
 
 // ROOT
 
@@ -17,7 +12,7 @@ html
     font-size 62.5%
 
 body
-    font-family font-family-text
+    font-family $font-family-text
     text-align center
     font-size 1.6rem
     line-height 2rem
@@ -25,8 +20,10 @@ body
 
 // HEADINGS
 
-h1, h2, h3
-    font-family font-family-title
+h1
+h2
+h3
+    font-family $font-family-title
     font-weight normal
 
 h1
