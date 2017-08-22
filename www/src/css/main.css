@@ -2,7 +2,7 @@
   font-family: 'Questa Grande';
   font-weight: 400;
   font-style: normal;
-  src: local("Questa Grande"), url("fonts.woff2") format("woff2"), url("fonts.woff") format("woff");
+  src: local("Questa Grande"), url("fonts/questa_grande.woff2") format("woff2"), url("fonts/questa_grande.woff") format("woff");
 }
 html {
   font-size: 62.5%;
