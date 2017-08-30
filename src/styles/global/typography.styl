@@ -6,16 +6,15 @@
 
 font-face( 'Questa Grande', 'fonts/questa_grande', 400, normal, formats: local woff2 woff, local-font-name: 'Questa Grande' )
 
+
 // ROOT
 
 html
     font-size 62.5%
 
 body
-    font-family $font-family-text
+    font 1.6rem/1.5em $font-family-text
     text-align center
-    font-size 1.6rem
-    line-height 2rem
 
 
 // HEADINGS
@@ -27,16 +26,16 @@ h3
     font-weight normal
 
 h1
-    font-size 3.6rem
+    font-size $font-size-heading-1
 
 h2
-    font-size 2.4rem
+    font-size $font-size-heading-2
 
 h3
-    font-size 1.8rem
+    font-size $font-size-heading-3
 
 
 // PARAGRAPH
 
 p
-    margin 1rem 0
+    margin 1em 0

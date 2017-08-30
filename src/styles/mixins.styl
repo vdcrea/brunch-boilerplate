@@ -1,3 +1,5 @@
+@import "./variables"
+
 title( color )
     display block
     position absolute
@@ -46,27 +48,21 @@ font-face( name, font-src, weight = false, style = false, formats = local eot wo
 		src unquote( join( ", ", fonts ) )
 
 /**
- * Convert pixels to rem. Assumes 1rem = 16px
+ * Convert pixels to rem. Assumes 1rem = 10px
  * http://kouto-swiss.io/docs.html#rem
  */
-// rem( values )
-// 	base = $font-size-base is a "unit" ? $font-size-base : 16
-// 	result = null
-//
-// 	for value in values
-// 		if type( value ) == "unit" && ( unit( value ) == "px" || unit( value ) == "" )
-// 			value = unit( round(value / base, 3 ), "rem" )
-// 			if value == "0rem" { value = 0 }
-//
-// 		result = result != null ? result value : value
-// 	result
+rem( values )
+	base = $font-size-base is a "unit" ? $font-size-base : 10
+	result = null
 
-rem(value)
-	u = unit(value)
-	if (u is 'px')
-		return unit(value/10, 'rem')
-	else
-		return unit(value, u)
+	for value in values
+		if type( value ) == "unit" && ( unit( value ) == "px" || unit( value ) == "" )
+			value = unit( round(value / base, 3 ), "rem" )
+			if value == "0rem" { value = 0 }
+
+		result = result != null ? result value : value
+	result
+
 
 /**
  * Shortcut for width and height properties

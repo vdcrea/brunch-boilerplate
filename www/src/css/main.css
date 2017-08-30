@@ -8,10 +8,8 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: "Segoe UI", "Helvetica Neue", Roboto, Arial, sans-serif;
+  font: 1.6rem/1.5em "Segoe UI", "Helvetica Neue", Roboto, Arial, sans-serif;
   text-align: center;
-  font-size: 1.6rem;
-  line-height: 2rem;
 }
 h1,
 h2,
@@ -26,10 +24,10 @@ h2 {
   font-size: 2.4rem;
 }
 h3 {
-  font-size: 1.8rem;
+  font-size: 3.6rem;
 }
 p {
-  margin: 1rem 0;
+  margin: 1em 0;
 }
 
 /**
@@ -37,7 +35,7 @@ p {
  * http://kouto-swiss.io/docs.html#font-face
  **/
 /**
- * Convert pixels to rem. Assumes 1rem = 16px
+ * Convert pixels to rem. Assumes 1rem = 10px
  * http://kouto-swiss.io/docs.html#rem
  */
 /**
@@ -156,7 +154,7 @@ p {
   color: rgba(0,0,0,0.3);
 }
 .footer p {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .header h1 {
