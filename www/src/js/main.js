@@ -1,1 +1,283 @@
-!function(){"use strict";var e="undefined"==typeof global?self:global;if("function"!=typeof e.require){var r={},t={},u={},n={}.hasOwnProperty,o=/^\.\.?(\/|$)/,l=function(e,r){for(var t,u=[],n=(o.test(r)?e+"/"+r:r).split("/"),l=0,i=n.length;l<i;l++)t=n[l],".."===t?u.pop():"."!==t&&""!==t&&u.push(t);return u.join("/")},i=function(e){return e.split("/").slice(0,-1).join("/")},s=function(r){return function(t){var u=l(i(r),t);return e.require(u,r)}},c=function(e,r){var u=v&&v.createHot(e),n={id:e,exports:{},hot:u};return t[e]=n,r(n.exports,s(e),n),n.exports},a=function(e){return u[e]?a(u[e]):e},f=function(e,r){return a(l(i(e),r))},d=function(e,u){null==u&&(u="/");var o=a(e);if(n.call(t,o))return t[o].exports;if(n.call(r,o))return c(o,r[o]);throw new Error("Cannot find module '"+e+"' from '"+u+"'")};d.alias=function(e,r){u[r]=e};var p=/\.[^.\/]+$/,_=/\/index(\.[^\/]+)?$/,m=function(e){if(p.test(e)){var r=e.replace(p,"");n.call(u,r)&&u[r].replace(p,"")!==r+"/index"||(u[r]=e)}if(_.test(e)){var t=e.replace(_,"");n.call(u,t)||(u[t]=e)}};d.register=d.define=function(e,u){if(e&&"object"==typeof e)for(var o in e)n.call(e,o)&&d.register(o,e[o]);else r[e]=u,delete t[e],m(e)},d.list=function(){var e=[];for(var t in r)n.call(r,t)&&e.push(t);return e};var v=e._hmr&&new e._hmr(f,d,r,t);d._cache=t,d.hmr=v&&v.wrap,d.brunch=!0,e.require=d}}(),function(){var e;"undefined"==typeof window?this:window;require.register("src/scripts/main.js",function(e,r,t){"use strict";function u(e){return e&&e.__esModule?e:{"default":e}}var n=r("jquery"),o=u(n),l=r("./modules/module_image"),i=u(l),s=r("./modules/module_block"),c=u(s),a=r("./modules/module_slick"),f=u(a),d={init:function(){(0,o["default"])(document).ready(function(){console.log("DOM Ready"),(0,i["default"])(),(0,c["default"])(),(0,f["default"])()})}};t.exports=d}),require.register("src/scripts/modules/module_block.js",function(e,r,t){"use strict";function u(e){return e&&e.__esModule?e:{"default":e}}var n=r("jquery"),o=u(n),l=function(){var e=(0,o["default"])(".module_block");e.length&&(console.log('".module_block" detected ('+e.length+")"),o["default"].each(e,function(e,r){var t=(0,o["default"])(r).find(".title"),u=(0,o["default"])(t[0]),n=u.text(),l=e+1;u.html(n+'<span class="module-count">'+l+"</span>")}))};t.exports=l}),require.register("src/scripts/modules/module_image.js",function(e,r,t){"use strict";function u(e){return e&&e.__esModule?e:{"default":e}}var n=r("jquery"),o=u(n),l=function(){var e=(0,o["default"])(".module_image");e.length&&console.log('".module_image" detected')};t.exports=l}),require.register("src/scripts/modules/module_slick.js",function(e,r,t){"use strict";function u(e){return e&&e.__esModule?e:{"default":e}}var n=r("jquery"),o=u(n),l=r("slick-carousel"),i=(u(l),function(){var e=(0,o["default"])(".module_slick");if(e.length){console.log('".module_slick" detected');var r={autoplay:!0,autoplaySpeed:2e3,arrows:!1,pauseOnHover:!1};o["default"].each(e,function(e,t){var u=(0,o["default"])(t).find(".carousel"),n=(0,o["default"])(u[0]);n.slick(r)})}});t.exports=i}),require.alias("process/browser.js","process"),e=require("process"),require.register("___globals___",function(e,r,t){})}(),require("___globals___");
+(function() {
+  'use strict';
+
+  var globals = typeof global === 'undefined' ? self : global;
+  if (typeof globals.require === 'function') return;
+
+  var modules = {};
+  var cache = {};
+  var aliases = {};
+  var has = {}.hasOwnProperty;
+
+  var expRe = /^\.\.?(\/|$)/;
+  var expand = function(root, name) {
+    var results = [], part;
+    var parts = (expRe.test(name) ? root + '/' + name : name).split('/');
+    for (var i = 0, length = parts.length; i < length; i++) {
+      part = parts[i];
+      if (part === '..') {
+        results.pop();
+      } else if (part !== '.' && part !== '') {
+        results.push(part);
+      }
+    }
+    return results.join('/');
+  };
+
+  var dirname = function(path) {
+    return path.split('/').slice(0, -1).join('/');
+  };
+
+  var localRequire = function(path) {
+    return function expanded(name) {
+      var absolute = expand(dirname(path), name);
+      return globals.require(absolute, path);
+    };
+  };
+
+  var initModule = function(name, definition) {
+    var hot = hmr && hmr.createHot(name);
+    var module = {id: name, exports: {}, hot: hot};
+    cache[name] = module;
+    definition(module.exports, localRequire(name), module);
+    return module.exports;
+  };
+
+  var expandAlias = function(name) {
+    return aliases[name] ? expandAlias(aliases[name]) : name;
+  };
+
+  var _resolve = function(name, dep) {
+    return expandAlias(expand(dirname(name), dep));
+  };
+
+  var require = function(name, loaderPath) {
+    if (loaderPath == null) loaderPath = '/';
+    var path = expandAlias(name);
+
+    if (has.call(cache, path)) return cache[path].exports;
+    if (has.call(modules, path)) return initModule(path, modules[path]);
+
+    throw new Error("Cannot find module '" + name + "' from '" + loaderPath + "'");
+  };
+
+  require.alias = function(from, to) {
+    aliases[to] = from;
+  };
+
+  var extRe = /\.[^.\/]+$/;
+  var indexRe = /\/index(\.[^\/]+)?$/;
+  var addExtensions = function(bundle) {
+    if (extRe.test(bundle)) {
+      var alias = bundle.replace(extRe, '');
+      if (!has.call(aliases, alias) || aliases[alias].replace(extRe, '') === alias + '/index') {
+        aliases[alias] = bundle;
+      }
+    }
+
+    if (indexRe.test(bundle)) {
+      var iAlias = bundle.replace(indexRe, '');
+      if (!has.call(aliases, iAlias)) {
+        aliases[iAlias] = bundle;
+      }
+    }
+  };
+
+  require.register = require.define = function(bundle, fn) {
+    if (bundle && typeof bundle === 'object') {
+      for (var key in bundle) {
+        if (has.call(bundle, key)) {
+          require.register(key, bundle[key]);
+        }
+      }
+    } else {
+      modules[bundle] = fn;
+      delete cache[bundle];
+      addExtensions(bundle);
+    }
+  };
+
+  require.list = function() {
+    var list = [];
+    for (var item in modules) {
+      if (has.call(modules, item)) {
+        list.push(item);
+      }
+    }
+    return list;
+  };
+
+  var hmr = globals._hmr && new globals._hmr(_resolve, require, modules, cache);
+  require._cache = cache;
+  require.hmr = hmr && hmr.wrap;
+  require.brunch = true;
+  globals.require = require;
+})();
+
+(function() {
+var global = typeof window === 'undefined' ? this : window;
+var process;
+var __makeRelativeRequire = function(require, mappings, pref) {
+  var none = {};
+  var tryReq = function(name, pref) {
+    var val;
+    try {
+      val = require(pref + '/node_modules/' + name);
+      return val;
+    } catch (e) {
+      if (e.toString().indexOf('Cannot find module') === -1) {
+        throw e;
+      }
+
+      if (pref.indexOf('node_modules') !== -1) {
+        var s = pref.split('/');
+        var i = s.lastIndexOf('node_modules');
+        var newPref = s.slice(0, i).join('/');
+        return tryReq(name, newPref);
+      }
+    }
+    return none;
+  };
+  return function(name) {
+    if (name in mappings) name = mappings[name];
+    if (!name) return;
+    if (name[0] !== '.' && pref) {
+      var val = tryReq(name, pref);
+      if (val !== none) return val;
+    }
+    return require(name);
+  }
+};
+require.register("src/scripts/main.js", function(exports, require, module) {
+'use strict';
+
+var _module_image = require('./modules/module_image');
+
+var _module_image2 = _interopRequireDefault(_module_image);
+
+var _module_block = require('./modules/module_block');
+
+var _module_block2 = _interopRequireDefault(_module_block);
+
+var _module_slick = require('./modules/module_slick');
+
+var _module_slick2 = _interopRequireDefault(_module_slick);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Main = {
+    init: function init() {
+        $(document).ready(function () {
+            console.log("DOM Ready");
+            (0, _module_image2.default)();
+            (0, _module_block2.default)();
+            (0, _module_slick2.default)();
+        });
+    }
+};
+
+module.exports = Main;
+
+});
+
+require.register("src/scripts/modules/module_block/display_index.js", function(exports, require, module) {
+'use strict';
+
+var displayIndex = function displayIndex(i, module_block) {
+    // find title and inject index of the module
+    var moduleTitle = $(module_block).find('.title');
+    var $moduleTitle = $(moduleTitle[0]);
+    var moduleTitleText = $moduleTitle.text();
+    var moduleIndex = i + 1;
+    $moduleTitle.html(moduleTitleText + '<span class="module-count">' + moduleIndex + '</span>');
+};
+
+module.exports = displayIndex;
+
+});
+
+require.register("src/scripts/modules/module_block/index.js", function(exports, require, module) {
+'use strict';
+
+var _display_index = require('./display_index');
+
+var _display_index2 = _interopRequireDefault(_display_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ModuleBlock = function ModuleBlock() {
+  var modules_block = $('.module_block');
+  if (modules_block.length) {
+
+    console.log('".module_block" detected (' + modules_block.length + ')');
+
+    $.each(modules_block, function (i, module_block) {
+      (0, _display_index2.default)(i, module_block);
+    });
+  }
+};
+
+module.exports = ModuleBlock;
+
+});
+
+require.register("src/scripts/modules/module_image.js", function(exports, require, module) {
+'use strict';
+
+var ModuleImage = function ModuleImage() {
+  var modules_image = $('.module_image');
+  if (modules_image.length) {
+    console.log('".module_image" detected');
+  }
+};
+
+module.exports = ModuleImage;
+
+});
+
+require.register("src/scripts/modules/module_slick.js", function(exports, require, module) {
+'use strict';
+
+var _slickCarousel = require('slick-carousel');
+
+var _slickCarousel2 = _interopRequireDefault(_slickCarousel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ModuleSlick = function ModuleSlick() {
+  var modules_slick = $('.module_slick');
+  if (modules_slick.length) {
+
+    console.log('".module_slick" detected');
+
+    var opts = {
+      autoplay: true,
+      autoplaySpeed: 2000,
+      arrows: false,
+      pauseOnHover: false
+    };
+
+    $.each(modules_slick, function (i, module_slick) {
+      var carousel = $(module_slick).find('.carousel');
+      var $carousel = $(carousel[0]);
+      $carousel.slick(opts);
+    });
+  }
+};
+
+module.exports = ModuleSlick;
+
+});
+
+require.alias("process/browser.js", "process");process = require('process');require.register("___globals___", function(exports, require, module) {
+  
+
+// Auto-loaded modules from config.npm.globals.
+window["$"] = require("jquery");
+window.jQuery = require("jquery");
+
+
+});})();require('___globals___');
+
+
+//# sourceMappingURL=main.js.map

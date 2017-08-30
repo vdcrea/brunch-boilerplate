@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import slick from 'slick-carousel'
 
 let ModuleSlick = () => {
@@ -14,7 +13,7 @@ let ModuleSlick = () => {
       pauseOnHover: false
     }
 
-    $.each(modules_slick, function (i, module_slick) {
+    $.each(modules_slick, (i, module_slick) => {
       let carousel = $(module_slick).find('.carousel')
       let $carousel = $(carousel[0])
       $carousel.slick(opts)

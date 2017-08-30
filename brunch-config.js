@@ -4,6 +4,10 @@ module.exports = {
     public: 'www/src'
   },
   npm: {
+    globals: {
+      $: 'jquery',
+      jQuery: 'jquery'
+    },
     styles: {
       'slick-carousel': [
         'slick/slick.css',
