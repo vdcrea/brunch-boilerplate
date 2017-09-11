@@ -1,0 +1,12 @@
+doctype html
+html
+    head
+        title My Site - #{title}
+        include ../partials/master/master_favicons.static.pug
+        block scripts
+            //- script(src='/jquery.js')
+    body
+        block content
+        block foot
+            #footer
+                p some footer content

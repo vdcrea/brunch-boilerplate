@@ -1,0 +1,9 @@
+extends markup/layouts/master_pug.static.pug
+
+block scripts
+
+block content
+    h1= title
+    - var pets = ['cat', 'dog']
+    each petName in pets
+        include markup/partials/modulepet.static.pug
