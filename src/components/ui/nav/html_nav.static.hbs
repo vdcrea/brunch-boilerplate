@@ -1,0 +1,13 @@
+---
+_options:
+    partials:
+        - src/components/ui/nav/links/html_link.static.hbs
+---
+
+<nav class="nav">
+    <ul class="nav-link-list">
+        {{#each nav}}
+            {{>html_link}}
+        {{/each}}
+    </ul>
+</nav>

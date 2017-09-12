@@ -1,0 +1,11 @@
+---
+_options:
+    partials:
+        - src/components/carousel/slide/html_slide.static.hbs
+---
+
+<div class="carousel">
+    {{#each slides}}
+        {{>html_slide}}
+    {{/each}}
+</div>

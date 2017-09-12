@@ -1,0 +1,22 @@
+---
+title: slide title
+img: path/to/image.jpg
+---
+
+<!--
+NOTE: no push state for deep partials
+
+(need to resave the partial referenced
+in the static page or layout to get hot reload:
+html_carousel.static.hbs)
+-->
+
+<div class="carousel-slide">
+
+    <h2>{{title}}</h2>
+
+    {{#if img}}
+    <img src="{{img}}" alt="{{title}}">
+    {{/if}}
+
+</div>

@@ -1,0 +1,41 @@
+---
+_options:
+  partials:
+    - src/layouts/partials/favicons.static.pug
+    - src/components/ui/header/html_header.static.hbs
+    - src/components/ui/nav/html_nav.static.hbs
+    - src/components/ui/footer/html_footer.static.pug
+
+nav:
+    -
+        url: /
+        text: Home
+    -
+        url: 01.html
+        text: Page 1
+    -
+        url: 02.html
+        text: Page 2
+---
+
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <title>{{title}}</title>
+    {{>favicons}}
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="{{bodyclass}}">
+
+    {{>html_header}}
+    {{>html_nav}}
+    {{content}}
+    {{>html_footer}}
+
+    <script src="js/vendor.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -3,6 +3,11 @@ module.exports = {
     watched: ['src'],
     public: 'www/src'
   },
+  modules: {
+    autoRequire: {
+      'js/main.js': ['src/main']
+    }
+  },
   npm: {
     globals: {
       $: 'jquery',
@@ -20,13 +25,16 @@ module.exports = {
     javascripts: {
       joinTo: {
         'js/vendor.js': /^(?!src\/)/,
-        'js/main.js': /^(src\/scripts\/)/
+        'js/main.js': /^(src\/.*\.js)/ // as hbs files are considered js, target only real .js
       }
     },
     stylesheets: {
       joinTo: {
         'css/vendor.css': /^node_modules/,
-        'css/main.css': /^(src\/styles\/)/
+        'css/main.css': /^(src\/)/
+      },
+      order: {
+        before: [/^(src\/styles\/)/]
       }
     }
   },
@@ -34,8 +42,8 @@ module.exports = {
     static: {
       processors: [
         require('html-brunch-static')({
-          partials: '/src/markup/partials?/',
-          layouts: '/src/markup/layouts?/',
+          partials: '/src/components?/',
+          layouts: '/src/layouts?/',
           handlebars: {
             enableProcessor: true
           },
