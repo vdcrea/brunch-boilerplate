@@ -1,6 +1,7 @@
 import slick from 'slick-carousel'
 
-let carouselComponent = () => {
+module.exports = () => {
+
     let carousels = $('.carousel')
 
     let opts = {
@@ -15,6 +16,5 @@ let carouselComponent = () => {
             $(carousel).slick(opts)
         }
     }
-}
 
-module.exports = carouselComponent
+}
