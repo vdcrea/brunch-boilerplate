@@ -5,8 +5,7 @@ module.exports = () => {
     if (navs.length) {
         for (let nav of navs) {
 
-            let $nav = $(nav)
-            let links = $nav.find('.nav-link')
+            let links = $(nav).find('.nav-link')
 
             for (let link of links) {
                 let url = $(link).attr('href')
@@ -15,7 +14,6 @@ module.exports = () => {
                     $(link).addClass('active')
                 }
             }
-
         }
     }
 }
