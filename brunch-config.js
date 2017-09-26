@@ -50,6 +50,7 @@ module.exports = {
           processors: [
             require('pug-brunch-static')({
               pretty: true,
+              fileMatch: /\.static\.pug$/,
               fileTransform: (filename) => filename.replace(/\.static\.pug$/, '.html')
             })
           ]

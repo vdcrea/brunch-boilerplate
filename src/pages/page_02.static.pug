@@ -1,0 +1,16 @@
+extends ../layouts/master.static.pug
+
+block variables
+    - var title = 'Page d\'accueil'
+    - var bodyClass = 'home'
+
+block header
+    - var pageTitle = 'Overwrite Title & Header'
+    include ../components/ui/page_title/page_title.static.pug
+    include ../components/ui/nav/nav.static.pug
+
+block content
+    p.text-center Content
+
+block footer
+    p.text-center Overwrite Footer

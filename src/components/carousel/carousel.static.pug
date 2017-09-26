@@ -1,0 +1,6 @@
+mixin carousel(slides)
+    .carousel
+        for slide in slides
+            .carousel-slide
+                h2.slide-title= slide.title
+                img.slide-img(src=slide.img)

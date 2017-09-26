@@ -1,19 +1,7 @@
 ---
-title: Home
-bodyclass: home
 _options:
-    layout: src/layouts/master.static.hbs
     partials:
-        - src/components/ui/page_title/html_page_title.static.hbs
-        - src/components/carousel/html_carousel.static.hbs
-
-pageTitle:
-    text: Page Title 1
-
-slides:
-    - title: slide 1
-    - title: slide 2
+        - src/pages/page_01.static.pug
 ---
 
-{{>html_page_title}}
-{{>html_carousel}}
+{{>page_01}}

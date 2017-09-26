@@ -1,0 +1,21 @@
+extends ../layouts/master.static.pug
+
+block variables
+    - var title = 'Page 01'
+    - var bodyClass = 'home'
+    - var pageTitle = title
+
+block content
+    -
+        var slides = [
+            {
+                title: 'slide 01',
+                img: 'contribution/slick1-zachary-staines-43216.jpg'
+            },
+            {
+                 title: 'slide 02',
+                 img: 'contribution/slick2-jakob-owens-208999.jpg'
+            }
+        ]
+    include ../components/carousel/carousel.static.pug
+    +carousel(slides)

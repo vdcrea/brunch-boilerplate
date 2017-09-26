@@ -1,5 +1,5 @@
-import nav from './ui/nav/js_nav'
-import carousel from './carousel/js_carousel'
+import nav from './ui/nav'
+import carousel from './carousel'
 
 module.exports = {
     nav,
