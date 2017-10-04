@@ -1,3 +1,5 @@
+@import '../../variables'
+
 .carousel
     display block
     position relative
@@ -11,11 +13,16 @@
         top 50%
         text-align center
         width 100%
-        color rgba(white, .3)
-        font-size 16rem
-        line-height 16rem
-        transform translate(0,-8rem)
+        color $color-white
         margin 0
+        font-size 8rem
+        line-height 8rem
+        transform translate(0,-4rem)
+        text-transform uppercase
+        @media $smartphone
+            font-size 16rem
+            line-height 16rem
+            transform translate(0,-8rem)
     .slide-img
         width 100%
         height auto
