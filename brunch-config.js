@@ -68,7 +68,8 @@ module.exports = {
       removeEmpty: true
     },
     babel: {
-      presets: ['latest']
+      presets: ['latest'],
+      plugins: ['transform-object-rest-spread']
     },
     postcss: {
       processors: [
