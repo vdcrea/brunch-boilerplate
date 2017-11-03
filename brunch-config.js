@@ -68,8 +68,7 @@ module.exports = {
       removeEmpty: true
     },
     babel: {
-      presets: ['latest'],
-      plugins: ['babel-polyfill']
+      presets: ['latest']
     },
     postcss: {
       processors: [
