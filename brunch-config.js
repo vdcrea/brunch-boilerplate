@@ -69,7 +69,7 @@ module.exports = {
     },
     babel: {
       presets: ['latest'],
-      plugins: ['transform-object-rest-spread']
+      plugins: ['babel-polyfill']
     },
     postcss: {
       processors: [
