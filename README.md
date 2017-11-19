@@ -14,7 +14,8 @@ Download this repo.
     * Brunch plugins and app dependencies: `npm install`
 * Design:
     * Cut out your mockup in files and put it in `artworks` dir.
-    * `npm run prep` — prepare all components needed in `src/components/`
+    * `npm run prep` — prepares all components needed in `src/components/` and generate `src/main.js` with all components js.
+    * if you delete the js file of a component, re-run `npm run prep` to regenerate the correct `src/main.js` file. 
 * Run:
     * `npm start` — watches the project with continuous rebuild. This will also launch HTTP server with [pushState](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history).
     * `npm run build` — builds minified project for production

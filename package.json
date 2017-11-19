@@ -7,7 +7,7 @@
   "repository": "",
   "scripts": {
     "start": "brunch watch --server",
-    "prep": "node artworks.js",
+    "prep": "node prep.js",
     "build": "brunch build --production"
   },
   "dependencies": {

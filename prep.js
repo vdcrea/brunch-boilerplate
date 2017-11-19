@@ -1,5 +1,6 @@
-// generate components files and folders
-// from an image folder
+// Auto-generate components base files and folders
+// from images from artworks folder
+// Auto-generates main.js
 
 // config
 const artworksDir = './artworks/';
