@@ -11,13 +11,15 @@ const path = require('path');
 const slugify = require('slugify');
 const camelize = require('camelize');
 const files = fs.readdirSync(artworksDir);
+
 const mkdirSync = function (dirPath) {
   try {
     fs.mkdirSync(dirPath)
   } catch (err) {
     if (err.code !== 'EEXIST') throw err
   }
-}
+};
+
 const createFileIfInexist = function createFileIfInexist(path, data) {
   fs.stat(path, function(err, fileStat) {
     if (err) {
@@ -36,7 +38,8 @@ const createFileIfInexist = function createFileIfInexist(path, data) {
     //   }
     // }
   });
-}
+};
+
 const copyFile = function copyFile(source, target, cb) {
   var cbCalled = false;
   var rd = fs.createReadStream(source);
@@ -57,7 +60,31 @@ const copyFile = function copyFile(source, target, cb) {
       cbCalled = true;
     }
   }
-}
+};
+
+const walk = function(dir, done) {
+  var results = [];
+  fs.readdir(dir, function(err, list) {
+    if (err) return done(err);
+    var i = 0;
+    (function next() {
+      var file = list[i++];
+      if (!file) return done(null, results);
+      file = dir + '/' + file;
+      fs.stat(file, function(err, stat) {
+        if (stat && stat.isDirectory()) {
+          walk(file, function(err, res) {
+            results = results.concat(res);
+            next();
+          });
+        } else {
+          results.push(file);
+          next();
+        }
+      });
+    })();
+  });
+};
 
 // templates
 const templateFile = function(componentName) {
@@ -171,15 +198,65 @@ for (let component of componentsCollection) {
     });
   }
   // create template files if doesn't exists
-  const componentScriptFile = componentPath + 'index.js';
-  const componentScriptData = scriptData(component.name);
-  createFileIfInexist(componentScriptFile, componentScriptData);
+  const componentTemplateFile = componentPath + templateFile(component.name);
   const componentStyleFile = componentPath + styleFile(component.name);
+  const componentScriptFile = componentPath + 'index.js';
+
+  const componentScriptData = scriptData(component.name);
+  // create js only if not already created (if there is no style & no js)
+  fs.stat(componentStyleFile, function(err, fileStat) {
+    if (err) {
+      if (err.code == 'ENOENT') {
+        // styles does not exist
+        // create js only if it doesn't exists
+        fs.stat(componentScriptFile, function(err, fileStat) {
+          if (err) {
+            if (err.code == 'ENOENT') {
+              fs.writeFile(componentScriptFile, componentScriptData, function(err) {
+                if (err) throw err;
+              });
+            }
+          }
+        });
+      }
+    }
+  });
+  // create styles and markup files
   const componentStyleData = styleData(component.name);
   createFileIfInexist(componentStyleFile, componentStyleData);
-  const componentTemplateFile = componentPath + templateFile(component.name);
   const componentTemplateData = templateData(component.name);
   createFileIfInexist(componentTemplateFile, componentTemplateData);
 }
-
 console.log('Components prepared successfully');
+
+// auto generate main.js
+walk('./src/components', function(err, results) {
+  if (err) throw err;
+  console.log(results);
+  let mainJsData = '';
+  let componentsList = [];
+  for (let file of results) {
+    const fileExt = path.extname(file);
+    if (fileExt == '.js') {
+      // component name
+      let componentNameSplit = file.split('/');
+      componentNameSplit.pop();
+      componentName = componentNameSplit[componentNameSplit.length - 1];
+      componentName = camelize(componentName);
+      // write import
+      mainJsData += 'import ' + componentName + ' from \'' + file + '\'\n';
+      // store component
+      componentsList.push(componentName);
+    }
+  }
+  mainJsData += '\n$(document).ready( () => {\n';
+  for (let component of componentsList) {
+    mainJsData += '  ' + component + '()\n';
+  }
+  mainJsData += '})';
+  // write main.js file
+  fs.writeFile('./src/main.js', mainJsData, function(err) {
+    if (err) throw err;
+    else console.log('Main js successfully prepared');
+  });
+});
