@@ -254,7 +254,7 @@ walk('./src/components', function(err, results) {
   }
   mainJsData += '\n$(document).ready( () => {\n';
   for (let component of componentsList) {
-    mainJsData += '  ' + component + '()\n';
+    mainJsData += '    ' + component + '()\n';
   }
   mainJsData += '})';
   // write main.js file

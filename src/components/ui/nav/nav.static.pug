@@ -1,17 +1,17 @@
 -
-  var navLinks = [
-    {
-      text: "01",
-      url: "01.html"
-    },
-    {
-      text: "02",
-      url: "02.html"
-    }
-  ];
+    var navLinks = [
+        {
+            text: "01",
+            url: "01.html"
+        },
+        {
+            text: "02",
+            url: "02.html"
+        }
+    ];
 
 nav#nav
-  ul.nav-link-list
-    for link in navLinks
-      li.nav-link-item
-        a.nav-link(href=link.url)= link.text
+    ul.nav-link-list
+        for link in navLinks
+            li.nav-link-item
+                a.nav-link(href=link.url)= link.text
