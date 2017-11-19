@@ -109,7 +109,7 @@ const scriptData = function(componentName) {
   const camelized = camelize(componentName);
   const componentsVar = camelized + 's';
   return `module.exports = () => {
-  let ` + componentsVar + ` = $('.` + componentName + `')
+  const ` + componentsVar + ` = $('.` + componentName + `')
   if (` + componentsVar + `.length) {
     for (let ` + camelized + ` of ` + componentsVar + `) {
       let $` + camelized + ` = $(` + camelized + `)

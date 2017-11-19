@@ -2,7 +2,7 @@ import slick from 'slick-carousel'
 
 module.exports = () => {
 
-    let carousels = $('.carousel')
+    const carousels = $('.carousel')
 
     const opts = {
         autoplay: true,
