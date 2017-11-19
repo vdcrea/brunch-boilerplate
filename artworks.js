@@ -232,7 +232,6 @@ console.log('Components prepared successfully');
 // auto generate main.js
 walk('./src/components', function(err, results) {
   if (err) throw err;
-  console.log(results);
   let mainJsData = '';
   let componentsList = [];
   for (let file of results) {
@@ -243,8 +242,11 @@ walk('./src/components', function(err, results) {
       componentNameSplit.pop();
       componentName = componentNameSplit[componentNameSplit.length - 1];
       componentName = camelize(componentName);
+      // component path
+      componentPath = file.replace('src/', '');
+      componentPath = componentPath.replace('/index.js', '');
       // write import
-      mainJsData += 'import ' + componentName + ' from \'' + file + '\'\n';
+      mainJsData += 'import ' + componentName + ' from \'' + componentPath + '\'\n';
       // store component
       componentsList.push(componentName);
     }
