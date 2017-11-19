@@ -228,7 +228,7 @@ for (let component of componentsCollection) {
   const componentTemplateData = templateData(component.name);
   createFileIfInexist(componentTemplateFile, componentTemplateData);
 }
-console.log('Components prepared successfully');
+console.log('Components successfully prepared');
 
 // auto generate main.js
 walk('./src/components', function(err, results) {
@@ -260,6 +260,6 @@ walk('./src/components', function(err, results) {
   // write main.js file
   fs.writeFile('./src/main.js', mainJsData, function(err) {
     if (err) throw err;
-    else console.log('Main js successfully prepared');
+    else console.log('Main.js successfully prepared');
   });
 });
